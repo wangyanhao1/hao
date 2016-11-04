@@ -1,0 +1,36 @@
+html,body,a,p,ul,li,img{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    border: 0;
+}
+body{background: #fff}
+#box{
+    width: 640px;
+    height: 500px;
+    position: relative;
+    background: red;
+    margin: 40px auto 0;
+}
+.f1{
+    width: 250px;
+    /*background: green;*/
+    padding: 0 10px;
+    float: left;
+    overflow: hidden;
+}
+.bodr{
+    /*border: 5px solid #fff;*/
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+img{
+    width: 250px;
+    vertical-align: middle;
+    transition: all .5s ease 1s;
+    cursor: pointer;
+}
+.bodr:hover img{
+    transform: scale(1.2);
+}

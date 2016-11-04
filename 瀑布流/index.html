@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+<style>
+    html,body,a,p,ul,li,img{
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style-type: none;
+        border: 0;
+    }
+    body{background: #fff}
+    #box{
+        width: 1080px;
+        height: auto;
+        position: relative;
+        background: red;
+        margin: 40px auto 0;
+    }
+    .f1{
+        width: 250px;
+        padding: 0 10px;
+        float: left;
+        overflow: hidden;
+    }
+    .bodr{
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    img{
+        width: 250px;
+        vertical-align: middle;
+        transition: all .5s ease 1s;
+        cursor: pointer;
+    }
+    .bodr:hover img{
+        transform: scale(1.2);
+    }
+</style>
+</head>
+<body>
+    <div id="box">
+        <div class="f1"></div>
+        <div class="f1"></div>
+        <div class="f1"></div>
+        <div class="f1"></div>
+    </div>
+</body>
+<script src="jquery-2.2.0.min.js"></script>
+<script>
+    var f1=document.getElementsByClassName("f1");
+    for (var j=0; j<5; j++) {
+        for(var i=0;i<f1.length;i++){
+            $(f1[i]).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+        }
+    }
+
+    $(document).on('scroll',function () {
+        var windowTop=$(window).innerHeight();//整个屏幕的高度
+        var scrollTop=$(document).scrollTop();//滚动条的卷去的高度
+        var documentTop=$(document).innerHeight();//整个内容的高度
+        if (windowTop+scrollTop==documentTop){
+            for (var j=0; j<5; j++) {
+                var heightMin;
+                var f1=document.getElementsByClassName("f1");
+                for(var i=0;i<f1.length;i++){
+                    heightMin=f1[0];
+//                    console.log(f1[git config --list0].scrollHeight)//<div class="f1">的div整个的高度 包括margin值等
+//                    console.log(f1[1].offsetHeight)<div class="f1">的div整个的高度 不包括margin值等
+                    for(var i=0;i<f1.length;i++){
+                        if(f1[i].offsetHeight<heightMin.offsetHeight){
+                            //if(f1[i].scrollHeight<heightMin.scrollHeight)
+                            heightMin=f1[i];0
+                        }
+                    }
+                }
+                $(heightMin).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+            }
+        }
+
+    })
+
+    window.onresize=function () {
+        if($(window).innerWidth()>1000){
+            $("#box").empty();
+            var aa=$("<div class='f1'></div>" + "<div class='f1'></div>" + "<div class='f1'></div>"+ "<div class='f1'></div>")
+            $("#box").append(aa);
+            for(var i=0;i<5;i++){
+                for(var j=0;j<f1.length;j++){
+                    $(f1[j]).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+                }
+            }
+            $("#box").css("width","1080px")
+
+        }else if($(window).innerWidth()<1000 && $(window).innerWidth()>=800){
+            $("#box").empty();
+            var aa=$("<div class='f1'></div>" +
+                    "<div class='f1'></div>" +
+                    "<div class='f1'></div>")
+            $("#box").append(aa);
+            for(var i=0;i<5;i++){
+                for(var j=0;j<f1.length;j++){
+                    $(f1[j]).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+                }
+            }
+            $("#box").css("width","810px")
+        }else if($(window).innerWidth()>=640 && $(window).innerWidth()<800){
+            $("#box").empty();
+            var aa=$("<div class='f1'></div>" +
+                    "<div class='f1'></div>")
+            $("#box").append(aa);
+            for(var i=0;i<5;i++){
+                for(var j=0;j<f1.length;j++){
+                    $(f1[j]).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+                }
+            }
+            $("#box").css("width","540px")
+        }else if($(window).innerWidth()<640){
+            $("#box").empty();
+            var aa=$("<div class='f1'></div>")
+            $("#box").append(aa);
+            for(var i=0;i<5;i++){
+                for(var j=0;j<f1.length;j++){
+                    $(f1[j]).append("<div class='bodr'><img src='img/"+Math.ceil(Math.random()*20)+".jpg' alt=''></div>")
+                }
+            }
+            $("#box").css("width","270px")
+        }
+    }
+
+
+
+</script>
+</html>
